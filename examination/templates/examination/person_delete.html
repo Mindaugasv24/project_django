@@ -1,0 +1,16 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+    <br>
+    <h1> Ar tikrai norime istrinti vartotoja? {{person.first_name}} {{person.last_name}} </h1>
+
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <a class="btn btn-primary" href="{% url 'examination:person' person.id %}" role="button" > Back </a>
+            <input type="submit" class="btn btn-danger" value="Delete">
+        </div>
+    </form>
+
+{% endblock %}

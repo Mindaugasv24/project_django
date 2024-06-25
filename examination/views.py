@@ -73,9 +73,9 @@ def update(request, pk):
         form = PersonForm(request.POST, instance=person)
         if form.is_valid():
             form.save()
-        return redirect("examination: person", pk=pk)
+        return redirect("examination:person", pk=pk)
     else:
         form = PersonForm(instance=person)
 
     context = {"form": form}
-    return render(request, "examination/update.html", context)
+    return render(request, "examination/person_update.html", context)

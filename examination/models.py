@@ -41,12 +41,14 @@ class Question(BaseModel):
         return f"{self.question} {self.dificulty}"
 
 
-# class Examquestion(BaseModel):
-#     exam_id = models.ForeignKey(Exam, on_delete=models.CASCADE)
-#     question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return f'{self.exam_id} {self.question_id}'
+class Exam_question(BaseModel):
+    exam_id = models.ForeignKey(Exam, on_delete=models.CASCADE)
+    question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.exam_id} {self.question_id}"
+
+
 #
 #
 # class Answer(BaseModel):

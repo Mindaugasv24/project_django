@@ -49,8 +49,6 @@ class Exam_question(BaseModel):
         return f"{self.exam_id} {self.question_id}"
 
 
-#
-#
 # class Answer(BaseModel):
 #     answer = models.CharField(max_length=100)
 #     correct = models.BooleanField(default=False)
@@ -58,8 +56,8 @@ class Exam_question(BaseModel):
 #
 #     def __str__(self):
 #         return f'{self.answer}'
-#
-#
+
+
 # class Result(BaseModel):
 #     person_answer = models.CharField(max_length=200)
 #     person_id = models.ForeignKey(Question, on_delete=models.CASCADE)

@@ -20,6 +20,9 @@ class Person(BaseModel):
         return f"{self.first_name} {self.last_name}"
 
 
+topic = ["Animal", "KET"]
+
+
 class Exam(BaseModel):
     subject = models.CharField(max_length=100)
     topic = models.CharField(max_length=200)

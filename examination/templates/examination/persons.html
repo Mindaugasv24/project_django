@@ -2,9 +2,13 @@
 
 {% block content %}
 
-    <div>
-    <h3> Vartotojai </h3>
-        <button type="button" class="btn btn-success">ADD</button>
+    <div class="d-flex justify-content-between">
+      <div >
+        <h3> Vartotojai </h3>
+      </div>
+      <div>
+        <a class="btn btn-secondary" href="{% url 'examination:person_add' %}" role="button"> Pridėti </a>
+      </div>
     </div>
 
     <table class="table table-dark table-striped">

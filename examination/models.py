@@ -34,11 +34,16 @@ class Exam(BaseModel):
 class Question(BaseModel):
     """r"""
 
+    COMPLEXITY_LEVEL = {
+        "1": "Easy",
+        "2": "Medium",
+        "3": "Hard",
+    }
     question = models.CharField(max_length=200)
-    dificulty = models.CharField(max_length=100)
+    compexity = models.CharField(max_length=100, choices=COMPLEXITY_LEVEL)
 
     def __str__(self):
-        return f"{self.question} {self.dificulty}"
+        return f"{self.question} {self.compexity}"
 
 
 class Exam_question(BaseModel):
@@ -49,20 +54,19 @@ class Exam_question(BaseModel):
         return f"{self.exam_id} {self.question_id}"
 
 
-# class Answer(BaseModel):
-#     answer = models.CharField(max_length=100)
-#     correct = models.BooleanField(default=False)
-#     question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return f'{self.answer}'
+class Answer(BaseModel):
+    answer = models.CharField(max_length=100)
+    correct = models.BooleanField(default=False)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.answer} {self.correct} {self.question}"
 
 
-# class Result(BaseModel):
-#     person_answer = models.CharField(max_length=200)
-#     person_id = models.ForeignKey(Question, on_delete=models.CASCADE)
-#     exam_id = models.ForeignKey(Question, on_delete=models.CASCADE)
-#     question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return f'{self.person_answer}'
+class Result(BaseModel):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.person} {self.exam} {self.answer}"

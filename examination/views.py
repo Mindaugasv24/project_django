@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Person
-from .forms import PersonForm, NameForm1
+from django.http import HttpResponseRedirect, HttpResponse
+from .models import Person, Question, Exam_question
+from .forms import PersonForm, NameForm1, QuestionForm
 
 
 def get_persons(request):
@@ -79,3 +80,48 @@ def update(request, pk):
 
     context = {"form": form}
     return render(request, "examination/person_update.html", context)
+
+
+def get_questions(request):
+    questions = Question.objects.all()
+    context = {"questions": questions}
+    return render(request, "examination/questions.html", context)
+
+
+def delete_question(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    context = {"question": question}
+    if request.method == "POST":
+        question.delete()
+        return redirect("examination:questions")
+    return render(request, "examination/question_delete.html", context)
+
+
+def add_question(request):
+    if request.method == "POST":
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect("examination:questions")
+    else:
+        form = QuestionForm()
+    return render(request, "examination/question_add.html", {"form": form})
+
+
+def get_question(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    context = {"question": question, "pk": pk}
+    return render(request, "examination/question.html", context)
+
+
+def update_question(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    if request.method == "POST":
+        form = QuestionForm(request.POST, instance=question)
+        if form.is_valid():
+            form.save()
+            return redirect("examination:questions")
+    else:
+        form = QuestionForm(instance=question)
+    context = {"form": form}
+    return render(request, "examination/question_update.html", context)

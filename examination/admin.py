@@ -1,9 +1,19 @@
 from django.contrib import admin
-from .models import Person, Exam, Question, Exam_question
+from .models import Person, Exam, Question, Exam_question, Answer, Result
+
+
+class ChoiceInline(admin.TabularInline):
+    model = Answer
+    extra = 4
+
+
+class QuestionsAdmin(admin.ModelAdmin):
+    inlines = [ChoiceInline]
+
 
 admin.site.register(Person)
 admin.site.register(Exam)
-admin.site.register(Question)
+admin.site.register(Question, QuestionsAdmin)
 admin.site.register(Exam_question)
-# admin.site.register(Answer)
-# admin.site.register(Result)
+admin.site.register(Answer)
+admin.site.register(Result)

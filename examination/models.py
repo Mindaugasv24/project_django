@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from django.db import models
-from django.utils import timezone
 
 
 class BaseModel(models.Model):
@@ -46,7 +45,7 @@ class Question(BaseModel):
         return f"{self.question} {self.complexity}"
 
 
-class Exam_question(BaseModel):
+class Examquestion(BaseModel):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 

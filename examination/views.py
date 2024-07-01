@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Person, Question, Exam_question
+from .models import Person, Question, Examquestion
 from .forms import PersonForm, NameForm1, QuestionForm
 
 

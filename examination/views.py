@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponseRedirect, HttpResponse
 from .models import Person, Question, Exam_question
 from .forms import PersonForm, NameForm1, QuestionForm
 

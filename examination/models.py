@@ -40,18 +40,18 @@ class Question(BaseModel):
         "3": "Hard",
     }
     question = models.CharField(max_length=200)
-    compexity = models.CharField(max_length=100, choices=COMPLEXITY_LEVEL)
+    complexity = models.CharField(max_length=100, choices=COMPLEXITY_LEVEL)
 
     def __str__(self):
-        return f"{self.question} {self.compexity}"
+        return f"{self.question} {self.complexity}"
 
 
 class Exam_question(BaseModel):
-    exam_id = models.ForeignKey(Exam, on_delete=models.CASCADE)
-    question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.exam_id} {self.question_id}"
+        return f"{self.exam} {self.question}"
 
 
 class Answer(BaseModel):

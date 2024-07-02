@@ -5,11 +5,11 @@
 
 <div class="d-flex justify-content-between">
   <div >
-    <h3> Klausimai </h3>
+    <h3> Questions </h3>
   </div>
   <div>
 
-    <a class="btn btn-success" href="{% url 'examination:question_add'  %}" role="button">Pridėti</a>
+    <a class="btn btn-success" href="{% url 'examination:question_add'  %}" role="button">ADD</a>
 
   </div>
 </div>
@@ -29,12 +29,12 @@
 
           <th scope="row"> {{ forloop.counter  }} </th>
 
-          <td> <p><a class="link-opacity-100" href="{% url 'examination:question' question.id  %}"> {{ question.question }} </a> </td>
+          <td> <a class="link" href="{% url 'examination:person' 1  %}">{{ question.question }} </a> </td>
           <td>
-          {% for answer in question.personanswer_set.all %}
-            <li> {{ answer.answers }} </li>
-             {% endfor %}
-          </td>
+            {% for answer in questions.answer_set.all %}
+            <li>{ answer.answer }</li>
+            {% endfor %}
+            </td>
 
 
         </tr>
